@@ -11,7 +11,7 @@ export const timer = (deadline) => {
   }
 
   const timerCounter = (deadline) => { // ? get deadline timing
-    const timerStop = new Date(deadline).getTime();
+    const timerStop = new Date(`${deadline} GMT+03:00`).getTime();
     const dateNow = Date.now();
     const timeRemaining = timerStop - dateNow;
     const seconds = Math.floor(timeRemaining / 1000 % 60);

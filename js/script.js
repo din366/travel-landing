@@ -1,9 +1,8 @@
 import { timer } from "./modules/timer.js";
 import { renderTimerFunc } from "./modules/renderTimer.js";
 
-const deadline= document.querySelector('.timer').dataset.timerDeadline;
+const deadline = document.querySelector('[data-deadline]').dataset.deadline;
 
-
-renderTimerFunc('timer');
+renderTimerFunc('data-timer-deadline');
 timer(deadline);
 

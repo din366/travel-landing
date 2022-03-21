@@ -1,6 +1,6 @@
-export const renderTimerFunc = (wrapperClass) => {
+export const renderTimerFunc = (wrapperDataset) => {
 
-  const wrapper = document.querySelector(`.${wrapperClass}`);
+  const wrapper = document.querySelector(`[${wrapperDataset}]`);
   const classesArray = [
   ['timer__item_days', 'timer__count_days', 'timer__units_days'],
   ['timer__item_hours', 'timer__count_hours', 'timer__units_hours'],
