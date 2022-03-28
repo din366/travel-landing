@@ -1,3 +1,13 @@
+export const declOfNum = (n, titles) => { // ? word case correction
+  return [n, titles[
+      n % 10 === 1 && n % 100 !== 11
+        ? 0
+        : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)
+        ? 1
+        : 2
+    ],];
+};
+
 export const timer = (deadline) => {
 
   const getTimerField = () => { // ? get items from html
@@ -21,16 +31,6 @@ export const timer = (deadline) => {
 
     return {timeRemaining, seconds, minutes, hours, days};
   }
-
-  const declOfNum = (n, titles) => { // ? word case correction
-    return [n, titles[
-        n % 10 === 1 && n % 100 !== 11
-          ? 0
-          : n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 10 || n % 100 >= 20)
-          ? 1
-          : 2
-      ],];
-  };
 
   const mainFunction = () => {
     const timerFields = getTimerField();

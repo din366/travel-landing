@@ -15,7 +15,7 @@ export const flyAirplane = () => {
     transition: 0.3s all;
   `;
   document.body.append(fly);
-
+  
   const calcPositionFly = () => {
     const maxTop = docEl.clientHeight - fly.clientHeight;
     const maxScroll = docEl.scrollHeight - docEl.clientHeight;
