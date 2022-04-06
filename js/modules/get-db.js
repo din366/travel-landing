@@ -6,6 +6,8 @@ const loadGoods = async (cb) => {
   return data;
 }
 
+export let dateAndPeoplesArr = [];
+
 /* Months for result block in form  */
 const month = ['Января', 'Февраля', 'Марта', 'Апреля', 'Мая', 'Июня', 'Июля', 'Августа', 'Сентября', 'Октября', 'Ноября', 'Декабря'];
 
@@ -60,17 +62,30 @@ export const renderTickets = async (formClass, selectLabelDateId, selectLabelPeo
           dateSplitArray.push(...date.split('.'));
         }
 
+        // * add or change in dateAndPeoplesArr date value, peoples value and price value (for showModal() func)
+        dateAndPeoplesArr = [
+          `${+dateSplitArray[0]} ${month[+dateSplitArray[1] - 1]} - ${+dateSplitArray[2]} ${month[+dateSplitArray[3] - 1]}`, 
+          `${declOfNum(selectLabelPeoples.value, ['человек','человека','человек'])[0]} ${declOfNum(selectLabelPeoples.value, ['человек','человека','человек'])[1]}`,
+          `${getDatabasesItem.price * selectLabelPeoples.value} ₽`,
+        ];
+
         priceCalcBlockWrapper.querySelector('.reservation__data').textContent = 
         `${+dateSplitArray[0]} ${month[+dateSplitArray[1] - 1]} - ${+dateSplitArray[2]} ${month[+dateSplitArray[3] - 1]}, 
           ${declOfNum(selectLabelPeoples.value, ['человек','человека','человек'])[0]} 
           ${declOfNum(selectLabelPeoples.value, ['человек','человека','человек'])[1]}`;
-        priceCalcBlockWrapper.querySelector('.reservation__price').textContent = `${getDatabasesItem.price * selectLabelPeoples.value} ₽`;  
+        priceCalcBlockWrapper.querySelector('.reservation__price').textContent = `${getDatabasesItem.price * selectLabelPeoples.value} ₽`;
+
+        /* remove disabled when choice date */
+        document.querySelector(`.${priceCalcBlock}`).querySelector('.reservation__button').disabled = false;
       }
     } else {
       /* clearing the block with calculations when choosing the item "Выбери дату" */
       if (priceCalcBlock) {
         document.querySelector(`.${formClass}`).querySelector(`.${priceCalcBlock}`).querySelector('.reservation__data').textContent = '';
         document.querySelector(`.${formClass}`).querySelector(`.${priceCalcBlock}`).querySelector('.reservation__price').textContent = '';
+
+        /* add disabled when date is null */
+        document.querySelector(`.${priceCalcBlock}`).querySelector('.reservation__button').disabled = true;
       }
       const select = document.createElement('option');
       select.classList.add('tour__option');
@@ -87,6 +102,10 @@ export const renderTickets = async (formClass, selectLabelDateId, selectLabelPeo
       infoParagraph[1] = selectLabelPeoples.value + ' ' + declOfNum(selectLabelPeoples.value, ['человек','человека','человек'])[1];
       priceCalcBlockWrapper.querySelector('.reservation__data').textContent = infoParagraph.join(', ');
       priceCalcBlockWrapper.querySelector('.reservation__price').textContent = `${getDatabasesItem.price * selectLabelPeoples.value} ₽`
+
+      // * change in dateAndPeoplesArr peoples value and price value (for showModal() func)
+      dateAndPeoplesArr[1] = selectLabelPeoples.value + ' ' + declOfNum(selectLabelPeoples.value, ['человек','человека','человек'])[1];
+      dateAndPeoplesArr[2] = `${getDatabasesItem.price * selectLabelPeoples.value} ₽`;
     }
   })
 }

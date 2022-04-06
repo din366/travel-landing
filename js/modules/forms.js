@@ -1,7 +1,10 @@
-const URL = 'https://jsonplaceholder.1typicode.com/posts';
+import showModal from './showModal.js';
+
+export const URL = 'https://jsonplaceholder.typicode.com/posts';
+export let bodyData = {};
 
 /* httpRequest main function */
-const httpRequest = (url, {
+/* const httpRequest = (url, {
   method = 'GET',
   callback,
   body = {},
@@ -35,10 +38,10 @@ const httpRequest = (url, {
   } catch (err) {
     callback(new Error(err));
   }
-}
+} */
 
 /* функция httpRequest через fetch */
-/* const fetchRequest = async (url, {
+export const fetchRequest = async (url, {
   method = 'GET',
   callback,
   body,
@@ -56,7 +59,7 @@ const httpRequest = (url, {
     const response = await fetch(url, options);
 
     if (response.ok) {
-      const data = await responce.json();
+      const data = await response.json();
       if (callback) callback(null, data);
       return;
     }
@@ -65,7 +68,7 @@ const httpRequest = (url, {
   } catch (err) {
     callback(err);
   }
-}; */
+};
 
 /* booking form const */
 const formBooking = document.querySelector('.reservation__form');
@@ -158,7 +161,7 @@ export const createBookingErrorBlock = (formClass) => {
 }
 
 /* show info after send request (send/error) in booking form */
-const bookingRenderFormAfterSend = (err, data) => {
+export const bookingRenderFormAfterSend = (err, data) => {
   const resetForm = () => {
     formBooking.reset();
 
@@ -238,26 +241,35 @@ const footerRenderFormAfterSend = (err, data) => {
 
 /* add listeners to submit button in booking form and footer form */
 export const sendForms = () => {
-  formBooking.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const bodyData = {
-      date: `${formBooking.querySelector('#reservation__date').value}`,
-      peoples: `${formBooking.querySelector('#reservation__people').value}`,
-      userName: `${formBooking.querySelector('#reservation__name').value}`,
-      userPhone: `${formBooking.querySelector('#reservation__phone').value}`
-    };
-
-    httpRequest(URL, {
-      method: 'POST',
-      body: {
-        title: 'Заявка на бронирование тура',
-        body: bodyData,
-      },
-      callback: bookingRenderFormAfterSend,
-      headers: {
-        'Content-Type': 'application/json'
-      },
-    });
+  formBooking.addEventListener('click', async (e) => {
+    if (e.target.classList.contains('reservation__button')) {
+      /* e.preventDefault(); */
+      bodyData = {
+        date: `${formBooking.querySelector('#reservation__date').value}`,
+        peoples: `${formBooking.querySelector('#reservation__people').value}`,
+        userName: `${formBooking.querySelector('#reservation__name').value}`,
+        userPhone: `${formBooking.querySelector('#reservation__phone').value}`
+      };
+    
+      showModal();
+     /*  fetchRequest(URL, {
+        method: 'POST',
+        body: {
+          title: 'Заявка на бронирование тура',
+          body: bodyData,
+        },
+        callback: bookingRenderFormAfterSend,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+      }); */
+  
+      /* const checkSend = await fetchRequest(URL, {
+        callback: showModal,
+      });
+      console.log(checkSend); */
+    }
+    
   });
 
   footerEmailForm.addEventListener('submit', (e) => {
@@ -266,7 +278,7 @@ export const sendForms = () => {
       email: `${footerFormEmailInput.value}`,
     };
 
-    httpRequest(URL, {
+    fetchRequest(URL, {
       method: 'POST',
       body: {
         title: 'Вопросы по туру (из футера)',
