@@ -1,4 +1,4 @@
-import showModal from './showModal.js';
+import { showModal } from './showModal.js';
 
 export const URL = 'https://jsonplaceholder.typicode.com/posts';
 export let bodyData = {};
@@ -243,33 +243,15 @@ const footerRenderFormAfterSend = (err, data) => {
 export const sendForms = () => {
   formBooking.addEventListener('click', async (e) => {
     if (e.target.classList.contains('reservation__button')) {
-      /* e.preventDefault(); */
       bodyData = {
         date: `${formBooking.querySelector('#reservation__date').value}`,
         peoples: `${formBooking.querySelector('#reservation__people').value}`,
         userName: `${formBooking.querySelector('#reservation__name').value}`,
         userPhone: `${formBooking.querySelector('#reservation__phone').value}`
       };
-    
+      /* async function for show confirm modal */
       showModal();
-     /*  fetchRequest(URL, {
-        method: 'POST',
-        body: {
-          title: 'Заявка на бронирование тура',
-          body: bodyData,
-        },
-        callback: bookingRenderFormAfterSend,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }); */
-  
-      /* const checkSend = await fetchRequest(URL, {
-        callback: showModal,
-      });
-      console.log(checkSend); */
     }
-    
   });
 
   footerEmailForm.addEventListener('submit', (e) => {

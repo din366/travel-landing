@@ -2,7 +2,7 @@ import loadStyle from './loadStyle.js';
 import { dateAndPeoplesArr } from './get-db.js'; // ? dateAndPeoplesArr [date, peoples, price]
 import { fetchRequest, URL, bodyData, bookingRenderFormAfterSend } from './forms.js';
 
-export const showModal = async (err, form) => {
+export const showModal = async (err) => {
   await loadStyle('css/modal.css');
 
   const overlay = document.createElement('div');
@@ -67,51 +67,4 @@ export const showModal = async (err, form) => {
     });
     
   });
-
-  /* return new Promise(resolve => {
-    changeButton.addEventListener('click', async function ololo(event) {
-      if (await validateAccessCode()) {
-        resolve(true)
-      }  else resolve(false);
-    });
-  }); */
-
-
-  /*  fetchRequest(URL, {
-        method: 'POST',
-        body: {
-          title: 'Заявка на бронирование тура',
-          body: bodyData,
-        },
-        callback: showModal,
-        headers: {
-          'Content-Type': 'application/json'
-        },
-      }); */
-
-
-      /* return new Promise((resolve) => {
-        confirmButton.addEventListener('submit', async (e) => {
-          e.preventDefault();
-          console.log(bodyData);
-          console.log(1);
-          const checkSend = await fetchRequest(URL, {
-            method: 'POST',
-            body: {
-              title: 'Заявка на бронирование тура',
-              body: bodyData,
-            },
-            callback: showModal,
-            headers: {
-              'Content-Type': 'application/json'
-            },
-          });
-          console.log(bodyData);
-          console.log(checkSend);
-          overlay.remove();
-          resolve(true);
-        });
-      }); */
 };
-
-export default showModal;
