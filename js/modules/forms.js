@@ -76,6 +76,8 @@ const reservationTitle = formBooking.querySelector('.reservation__title');
 const reservationInputs = formBooking.querySelector('.reservation__inputs');
 const reservationContacts = formBooking.querySelector('.reservation__contacts');
 const reservationBottom = formBooking.querySelector('.reservation__bottom');
+const reservationInputName = formBooking.querySelector('.reservation__input_name');
+const reservationPhone = formBooking.querySelector('#reservation__phone');
 /* END booking form const */
 
 /* footer form const */
@@ -241,7 +243,8 @@ const footerRenderFormAfterSend = (err, data) => {
 
 /* add listeners to submit button in booking form and footer form */
 export const sendForms = () => {
-  formBooking.addEventListener('click', async (e) => {
+  formBooking.addEventListener('click', async (e) => {    
+
     if (e.target.classList.contains('reservation__button')) {
       bodyData = {
         date: `${formBooking.querySelector('#reservation__date').value}`,
@@ -249,10 +252,23 @@ export const sendForms = () => {
         userName: `${formBooking.querySelector('#reservation__name').value}`,
         userPhone: `${formBooking.querySelector('#reservation__phone').value}`
       };
-      /* async function for show confirm modal */
-      showModal();
+
+      const regExpValidationName = /[а-я]+/gi; // full name check regexp
+      const regExpResultArray = reservationInputName.value.match(regExpValidationName);
+      if (regExpResultArray.length < 3) return; // if not fullname - exit
+
+        /* async function for show confirm modal */
+        showModal();
     }
   });
+
+  reservationInputName.addEventListener('input', () => {
+    reservationInputName.value = reservationInputName.value.replace(/[^а-я ]/gi, '');
+  });
+
+  reservationPhone.addEventListener('input', () => {
+    reservationPhone.value = reservationPhone.value.replace(/[^0-9\+]/, '');
+  }) 
 
   footerEmailForm.addEventListener('submit', (e) => {
     e.preventDefault();

@@ -50,7 +50,8 @@ export const showModal = async (err) => {
 
   confirmButton.addEventListener('click', async (e) => {
     e.preventDefault();
-    if (bodyData.userName === '' || bodyData.userPhone === '') return;
+    
+    if (bodyData.userName === '' || bodyData.userPhone === '' ) return;
     await fetchRequest(URL, {
       method: 'POST',
       body: {
