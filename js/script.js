@@ -21,9 +21,11 @@ renderTickets('tour__form', 'tour__date', 'tour__people'); // small form
 renderTickets('reservation__form', 'reservation__date', 'reservation__people', 'reservation__bottom'); // form with calculation
 /* revesration__botton - calculation block */
 
+runPlugins();
+
 createBookingSendBlock('reservation__form');
 createBookingErrorBlock('reservation__form');
 
 sendForms(); // add request listeners
 
-runPlugins();
+

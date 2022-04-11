@@ -271,12 +271,16 @@ export const sendForms = () => {
     reservationPhone.value = reservationPhone.value.replace(/[^0-9\+]/, '');
   }) 
 
+  
+
   footerEmailForm.addEventListener('submit', (e) => {
     e.preventDefault();
+    if (footerEmailForm.querySelector('.footer__input').classList.contains('just-validate-error-field')){
+      return; // if a validation error occurs - return
+    }
     const bodyData = {
       email: `${footerFormEmailInput.value}`,
     };
-
     fetchRequest(URL, {
       method: 'POST',
       body: {
@@ -288,5 +292,6 @@ export const sendForms = () => {
         'Content-Type': 'application/json'
       },
     });
+    
   })
 }

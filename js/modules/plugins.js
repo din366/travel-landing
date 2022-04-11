@@ -31,4 +31,21 @@ export const runPlugins = () => {
       }
     }
   }); 
+
+  /* just-validate for email form */
+  const validate = new JustValidate('.footer__form');
+  validate.addField('.footer__input', [
+    {
+      rule: 'minLength',
+      value: 6,
+    },
+    {
+      rule: 'required',
+      errorMessage: 'Email is required',
+    },
+    {
+      rule: 'email',
+      errorMessage: 'Email is invalid!',
+    },
+  ])
 }
