@@ -255,6 +255,7 @@ export const sendForms = () => {
 
       const regExpValidationName = /[а-я]+/gi; // full name check regexp
       const regExpResultArray = reservationInputName.value.match(regExpValidationName);
+      if (reservationInputName.value === '' || reservationPhone.value === '') return;
       if (regExpResultArray.length < 3) return; // if not fullname - exit
 
         /* async function for show confirm modal */

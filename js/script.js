@@ -5,6 +5,7 @@ import { burgerFunc } from "./modules/burger.js";
 import { flyAirplane } from "./modules/flyAirplane.js";
 import { renderTickets } from "./modules/get-db.js";
 import { createBookingSendBlock, createBookingErrorBlock, sendForms } from "./modules/forms.js";
+import { runPlugins } from "./modules/plugins.js";
 
 const deadline = document.querySelector('[data-deadline]').dataset.deadline;
 
@@ -24,3 +25,5 @@ createBookingSendBlock('reservation__form');
 createBookingErrorBlock('reservation__form');
 
 sendForms(); // add request listeners
+
+runPlugins();
