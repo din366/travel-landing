@@ -84,7 +84,7 @@ const reservationPhone = formBooking.querySelector('#reservation__phone');
 const footerEmailForm = document.querySelector('.footer__form');
 const footerFormEmailInput = document.querySelector('.footer__input');
 const footerEmailFormTitle = document.querySelector('.footer__form-title');
-const footerEmailFormDescr =  document.querySelector('.footer__text');
+const footerEmailFormDescr = document.querySelector('.footer__text');
 const footerEmailFormInputWrapper = document.querySelector('.footer__input-wrap');
 /* END footer form const */
 
@@ -243,7 +243,7 @@ const footerRenderFormAfterSend = (err, data) => {
 
 /* add listeners to submit button in booking form and footer form */
 export const sendForms = () => {
-  formBooking.addEventListener('click', async (e) => {    
+  formBooking.addEventListener('click', async (e) => {
 
     if (e.target.classList.contains('reservation__button')) {
       bodyData = {
@@ -253,13 +253,13 @@ export const sendForms = () => {
         userPhone: `${formBooking.querySelector('#reservation__phone').value}`
       };
 
-      const regExpValidationName = /[а-я]+/gi; // full name check regexp
+      const regExpValidationName = /[а-я][a-z]+/gi; // full name check regexp
       const regExpResultArray = reservationInputName.value.match(regExpValidationName);
       if (reservationInputName.value === '' || reservationPhone.value === '') return;
-      if (regExpResultArray.length < 3) return; // if not fullname - exit
+      /* if (regExpResultArray.length < 3) return; */ // if not fullname - exit
 
-        /* async function for show confirm modal */
-        showModal();
+      /* async function for show confirm modal */
+      showModal();
     }
   });
 
@@ -269,13 +269,13 @@ export const sendForms = () => {
 
   reservationPhone.addEventListener('input', () => {
     reservationPhone.value = reservationPhone.value.replace(/[^0-9\+]/, '');
-  }) 
+  })
 
-  
+
 
   footerEmailForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    if (footerEmailForm.querySelector('.footer__input').classList.contains('just-validate-error-field')){
+    if (footerEmailForm.querySelector('.footer__input').classList.contains('just-validate-error-field')) {
       return; // if a validation error occurs - return
     }
     const bodyData = {
@@ -292,6 +292,6 @@ export const sendForms = () => {
         'Content-Type': 'application/json'
       },
     });
-    
+
   })
 }
