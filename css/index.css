@@ -674,7 +674,7 @@ p {
   -ms-grid-columns: 1fr 90px 1fr;
   grid-template-columns: repeat(2, 1fr);
   -ms-grid-rows: auto 66px auto 66px auto;
-  grid-template-areas: "wrap wrap""text timer"". btn";
+  grid-template-areas: "wrap wrap" "text timer" ". btn";
   gap: 66px 90px;
 }
 
@@ -753,7 +753,7 @@ p {
   gap: 80px 20px;
   -ms-grid-columns: 1fr 20px 1fr 20px 1fr 20px 1fr;
   grid-template-columns: repeat(4, 1fr);
-  grid-template-areas: ". . . .""a a . ."". b . ."". . . .""c c . .";
+  grid-template-areas: ". . . ." "a a . ." ". b . ." ". . . ." "c c . .";
 }
 
 .about__grid-item_a {
@@ -834,7 +834,7 @@ p {
   -ms-flex-align: center;
   align-items: center;
   gap: 100px 20px;
-  grid-template-areas: ". . a""b c d"". . e";
+  grid-template-areas: ". . a" "b c d" ". . e";
 }
 
 .about__item_a {
@@ -1019,7 +1019,7 @@ p {
 
 .tour {
   padding-top: 100px;
-  padding-bottom: 0;
+  padding-bottom: 100px;
   background: url("../img/tour/background.jpg") center/cover no-repeat;
   color: #fff;
 }
@@ -2106,7 +2106,6 @@ p {
   }
 
   .tour {
-    padding-bottom: 0;
     padding-top: 80px;
   }
 
@@ -3265,7 +3264,7 @@ p {
   }
 
   .hero__content {
-    grid-template-areas: "wrap wrap""text text""timer timer""btn btn";
+    grid-template-areas: "wrap wrap" "text text" "timer timer" "btn btn";
     max-width: 270px;
   }
 
