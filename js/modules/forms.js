@@ -253,7 +253,7 @@ export const sendForms = () => {
         userPhone: `${formBooking.querySelector('#reservation__phone').value}`
       };
 
-      const regExpValidationName = /[а-я][a-z]+/gi; // full name check regexp
+      const regExpValidationName = /[а-яa-z]+/gi; // full name check regexp
       const regExpResultArray = reservationInputName.value.match(regExpValidationName);
       if (reservationInputName.value === '' || reservationPhone.value === '') return;
       /* if (regExpResultArray.length < 3) return; */ // if not fullname - exit
@@ -264,7 +264,7 @@ export const sendForms = () => {
   });
 
   reservationInputName.addEventListener('input', () => {
-    reservationInputName.value = reservationInputName.value.replace(/[^а-я ]/gi, '');
+    reservationInputName.value = reservationInputName.value.replace(/[^а-яa-z ]/gi, '');
   });
 
   reservationPhone.addEventListener('input', () => {
